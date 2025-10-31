@@ -509,7 +509,7 @@ export default function App() {
     return null;
   }, []);
 
-  // AI Logic - Easy mode with 60% smart, 40% random
+  // AI Logic - Easy mode with 70% smart, 30% random
   const getAIMove = useCallback((currentBoard) => {
     const emptyCells = currentBoard
       .map((val, idx) => (val === null ? idx : null))
@@ -517,12 +517,12 @@ export default function App() {
 
     if (emptyCells.length === 0) return null;
 
-    // 40% chance of random move (making AI easier to beat)
-    if (Math.random() < 0.4) {
+    // 30% chance of random move (making AI easier to beat)
+    if (Math.random() < 0.3) {
       return emptyCells[Math.floor(Math.random() * emptyCells.length)];
     }
 
-    // 60% chance of smart move
+    // 70% chance of smart move
     // Try to win
     for (let cell of emptyCells) {
       const testBoard = [...currentBoard];
