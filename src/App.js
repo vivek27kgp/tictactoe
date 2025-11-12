@@ -5,155 +5,356 @@ import { Volume2, VolumeX, Trophy, Target, Sparkles, X } from "lucide-react";
 // Ethical Values Collection - 20+ unique messages
 const ETHICAL_VALUES = [
   {
+    title: "Whistleblower",
+    message:
+      "Someone who bravely exposes wrongdoing for the greater good. Courage in truth safeguards integrity in any system.",
+    icon: "📣",
+  },
+  {
+    title: "Ethics",
+    message:
+      "The foundation of right conduct. Ethics guide our decisions and shape our collective trust and humanity.",
+    icon: "⚖️",
+  },
+  {
     title: "Integrity",
     message:
-      "Always be honest and true to your word. Your character is defined by what you do when no one is watching.",
+      "Being honest and staying true to your moral principles, even when no one is watching. Integrity earns lifelong respect.",
     icon: "🛡️",
-  },
-  {
-    title: "Empathy",
-    message:
-      "Try to understand others' feelings and perspectives. Kindness and compassion make the world a better place.",
-    icon: "❤️",
-  },
-  {
-    title: "Perseverance",
-    message:
-      "Success comes to those who keep trying. Every failure is a lesson that brings you closer to your goal.",
-    icon: "💪",
-  },
-  {
-    title: "Respect",
-    message:
-      "Treat everyone with dignity, regardless of their background or beliefs. Respect is the foundation of harmony.",
-    icon: "🤝",
-  },
-  {
-    title: "Gratitude",
-    message:
-      "Appreciate what you have and express thanks to those who help you. A grateful heart is a magnet for miracles.",
-    icon: "🙏",
-  },
-  {
-    title: "Courage",
-    message:
-      "Bravery isn't the absence of fear, but acting despite it. Stand up for what's right, even when it's difficult.",
-    icon: "🦁",
-  },
-  {
-    title: "Humility",
-    message:
-      "Stay humble in victory and gracious in defeat. There's always more to learn from everyone around you.",
-    icon: "🌟",
-  },
-  {
-    title: "Responsibility",
-    message:
-      "Take ownership of your actions and their consequences. Being accountable builds trust and respect.",
-    icon: "⚖️",
-  },
-  {
-    title: "Creativity",
-    message:
-      "Think outside the box and embrace innovative solutions. Your unique perspective can change the world.",
-    icon: "🎨",
-  },
-  {
-    title: "Patience",
-    message:
-      "Good things take time. Learn to wait calmly and trust the process of growth and development.",
-    icon: "⏳",
-  },
-  {
-    title: "Fairness",
-    message:
-      "Treat others as you would like to be treated. Justice and equality should guide all your actions.",
-    icon: "⚖️",
-  },
-  {
-    title: "Self-Discipline",
-    message:
-      "Master yourself before trying to master anything else. Consistent effort leads to extraordinary results.",
-    icon: "🎯",
-  },
-  {
-    title: "Generosity",
-    message:
-      "Share your time, knowledge, and resources with others. What you give comes back multiplied.",
-    icon: "🎁",
-  },
-  {
-    title: "Optimism",
-    message:
-      "Choose to see the positive in every situation. A positive mindset creates positive outcomes.",
-    icon: "☀️",
-  },
-  {
-    title: "Authenticity",
-    message:
-      "Be yourself unapologetically. Your uniqueness is your superpower in this world.",
-    icon: "✨",
-  },
-  {
-    title: "Mindfulness",
-    message:
-      "Live in the present moment. Being aware and focused brings peace and clarity to your life.",
-    icon: "🧘",
-  },
-  {
-    title: "Collaboration",
-    message:
-      "Together we achieve more than alone. Value teamwork and collective success over individual glory.",
-    icon: "🤝",
-  },
-  {
-    title: "Wisdom",
-    message:
-      "Knowledge is knowing what to say; wisdom is knowing when to say it. Learn from experience and others.",
-    icon: "🦉",
-  },
-  {
-    title: "Adaptability",
-    message:
-      "Be flexible and open to change. Those who adapt to new situations thrive in any environment.",
-    icon: "🌊",
   },
   {
     title: "Excellence",
     message:
-      "Strive for quality in everything you do. Excellence is not a destination but a continuous journey.",
+      "Strive for the highest standards in everything you do. Excellence is a journey of continuous improvement and purpose.",
     icon: "🏆",
   },
   {
-    title: "Compassion",
+    title: "Pioneering",
     message:
-      "Show kindness to all living beings. Small acts of care can heal wounds and change lives.",
-    icon: "💝",
+      "Being the first to explore new ideas and lead innovation. True pioneers inspire others to dream and act boldly.",
+    icon: "🚀",
   },
   {
-    title: "Balance",
+    title: "Unity",
     message:
-      "Find harmony between work and play, giving and receiving. A balanced life is a fulfilling life.",
+      "Standing together as one. Unity builds strength, fosters understanding, and creates unstoppable teams.",
+    icon: "🤝",
+  },
+  {
+    title: "Responsibility",
+    message:
+      "Owning your actions and their outcomes. Responsibility is the foundation of leadership and trust.",
     icon: "⚖️",
   },
   {
-    title: "Curiosity",
+    title: "Transparency",
     message:
-      "Never stop asking questions and seeking knowledge. A curious mind is always growing and evolving.",
+      "Communicating openly and honestly. Transparency creates clarity, prevents misunderstandings, and builds credibility.",
     icon: "🔍",
+  },
+  {
+    title: "Respect",
+    message:
+      "Honoring the value and dignity of others. Respect transforms differences into meaningful collaboration.",
+    icon: "🙏",
+  },
+  {
+    title: "Trust",
+    message:
+      "Believing in the reliability and integrity of others. Trust is earned through consistent actions over time.",
+    icon: "🤝",
+  },
+  {
+    title: "Accountability",
+    message:
+      "Taking ownership of your words, actions, and results. Accountability strengthens credibility and teamwork.",
+    icon: "📘",
+  },
+  {
+    title: "Fairness",
+    message:
+      "Treating everyone equally and justly. Fairness ensures harmony, justice, and lasting relationships.",
+    icon: "⚖️",
+  },
+  {
+    title: "Honesty",
+    message:
+      "Always speak the truth with kindness and courage. Honesty builds the foundation of every meaningful connection.",
+    icon: "💬",
+  },
+  {
+    title: "Diversity",
+    message:
+      "Celebrating differences and learning from every perspective. Diversity makes teams stronger and ideas richer.",
+    icon: "🌎",
+  },
+  {
+    title: "Equality",
+    message:
+      "Everyone deserves equal opportunity and respect. Equality empowers people to reach their full potential.",
+    icon: "🤲",
+  },
+  {
+    title: "Meritocracy",
+    message:
+      "Rewarding effort and talent fairly. Meritocracy ensures that success comes from hard work and ability, not privilege.",
+    icon: "🎯",
+  },
+  {
+    title: "Innovation",
+    message:
+      "Turning imagination into reality. Innovation drives progress and transforms challenges into opportunities.",
+    icon: "💡",
+  },
+  {
+    title: "Sustainability",
+    message:
+      "Building a better world without harming tomorrow. Sustainability means mindful growth and conscious action.",
+    icon: "🌱",
+  },
+  {
+    title: "Confidentiality",
+    message:
+      "Protecting private information with discretion. Trust thrives when confidentiality is respected.",
+    icon: "🔒",
+  },
+  {
+    title: "Leadership",
+    message:
+      "Guiding with vision, empathy, and example. True leadership uplifts others and cultivates growth.",
+    icon: "🌟",
+  },
+  {
+    title: "Commitment",
+    message:
+      "Dedication to goals and values even when challenges arise. Commitment is the seed of accomplishment.",
+    icon: "💪",
+  },
+  {
+    title: "Courage",
+    message:
+      "Facing fear with determination. Courage is the bridge between intention and achievement.",
+    icon: "🦁",
+  },
+  {
+    title: "Empathy",
+    message:
+      "Feeling and understanding the emotions of others. Empathy fosters compassion and strong human connections.",
+    icon: "❤️",
+  },
+  {
+    title: "Collaboration",
+    message:
+      "Working together with shared purpose. Collaboration multiplies creativity and success.",
+    icon: "🤝",
+  },
+  {
+    title: "Professionalism",
+    message:
+      "Maintaining competence, respect, and accountability. Professionalism builds confidence and trust in your work.",
+    icon: "💼",
+  },
+  {
+    title: "Tolerance",
+    message:
+      "Embracing differences with patience and respect. Tolerance nurtures peace and cooperation.",
+    icon: "🕊️",
+  },
+  {
+    title: "Learning",
+    message:
+      "A lifelong journey of curiosity and discovery. Each lesson shapes a wiser version of yourself.",
+    icon: "📚",
+  },
+  {
+    title: "Empowerment",
+    message:
+      "Giving people the confidence and authority to act. Empowerment transforms potential into performance.",
+    icon: "⚡",
+  },
+  {
+    title: "Communication",
+    message:
+      "Sharing information clearly and respectfully. Effective communication builds understanding and trust.",
+    icon: "🗣️",
+  },
+  {
+    title: "Protection",
+    message:
+      "Safeguarding people, values, and truth. Protection ensures safety, dignity, and justice for all.",
+    icon: "🛡️",
+  },
+  {
+    title: "Objectivity",
+    message:
+      "Judging situations with facts, not emotions. Objectivity helps maintain fairness and sound decision-making.",
+    icon: "🎯",
+  },
+  {
+    title: "Authenticity",
+    message:
+      "Being genuine and true to yourself. Authenticity inspires confidence and connection.",
+    icon: "✨",
+  },
+  {
+    title: "Inclusivity",
+    message:
+      "Creating space for everyone to belong. Inclusivity celebrates differences and strengthens unity.",
+    icon: "🌍",
+  },
+  {
+    title: "Credibility",
+    message:
+      "Earning trust through consistency and reliability. Credibility turns promises into proven results.",
+    icon: "📜",
+  },
+  {
+    title: "Discipline",
+    message:
+      "Training yourself to stay focused and consistent. Discipline is the key to turning goals into achievements.",
+    icon: "🎯",
+  },
+  {
+    title: "Dedication",
+    message:
+      "Staying fully committed to your purpose. Dedication transforms hard work into lasting success.",
+    icon: "🔥",
+  },
+  {
+    title: "Motivation",
+    message:
+      "The inner drive that pushes you toward greatness. Motivation fuels progress and persistence.",
+    icon: "🚀",
+  },
+  {
+    title: "Clarity",
+    message:
+      "Understanding what truly matters. Clarity helps you make better decisions and stay on your path.",
+    icon: "🔦",
+  },
+  {
+    title: "Support",
+    message:
+      "Helping others grow and succeed. True support strengthens teams and builds lasting bonds.",
+    icon: "🫶",
+  },
+  {
+    title: "Recognition",
+    message:
+      "Acknowledging effort and contribution. Recognition motivates excellence and inspires gratitude.",
+    icon: "🏅",
   },
   {
     title: "Resilience",
     message:
-      "Bounce back from setbacks stronger than before. Your ability to recover defines your success.",
+      "The strength to recover from challenges stronger than before. Resilience turns obstacles into growth.",
     icon: "🌱",
+  },
+  {
+    title: "Optimism",
+    message:
+      "Believing in positive outcomes even in adversity. Optimism fuels hope and innovation.",
+    icon: "☀️",
+  },
+  {
+    title: "Growth",
+    message:
+      "Continuously improving and evolving. Growth happens when you step outside your comfort zone.",
+    icon: "🌳",
+  },
+  {
+    title: "Vision",
+    message:
+      "Seeing beyond the present to shape the future. Visionaries turn ideas into reality through belief and action.",
+    icon: "🔭",
+  },
+  {
+    title: "Strategy",
+    message:
+      "Crafting a thoughtful plan to reach your goals. A clear strategy turns dreams into achievable milestones.",
+    icon: "🗺️",
+  },
+  {
+    title: "Synergy",
+    message:
+      "The power of combined effort. Synergy makes collaboration more effective than individual action.",
+    icon: "⚙️",
+  },
+  {
+    title: "Inspiration",
+    message:
+      "The spark that ignites creativity and courage. Inspiration pushes boundaries and elevates others.",
+    icon: "💫",
+  },
+  {
+    title: "Honour",
+    message:
+      "Living with dignity, respect, and truth. Honour defines how others remember your character.",
+    icon: "🎖️",
+  },
+
+  // --- Additional curated values ---
+  {
+    title: "Kindness",
+    message:
+      "A small act of kindness can make a big difference. Compassion is contagious — spread it widely.",
+    icon: "💖",
+  },
+  {
+    title: "Mindfulness",
+    message:
+      "Be fully present in the moment. Mindfulness brings calmness, clarity, and better choices.",
+    icon: "🧘",
+  },
+  {
+    title: "Curiosity",
+    message:
+      "Keep asking questions and exploring. Curiosity is the beginning of all wisdom and discovery.",
+    icon: "🔍",
+  },
+  {
+    title: "Accountable",
+    message:
+      "Owning your results and learning from them. Accountability builds respect and growth.",
+    icon: "📗",
+  },
+  {
+    title: "Safety",
+    message:
+      "Protect yourself and others by acting responsibly. Safety ensures wellbeing and trust for all.",
+    icon: "🦺",
+  },
+  {
+    title: "Culture",
+    message:
+      "A reflection of shared beliefs and practices. A strong culture fosters belonging and pride.",
+    icon: "🎭",
+  },
+  {
+    title: "Governance",
+    message:
+      "Leading with fairness, clarity, and accountability. Good governance ensures lasting progress.",
+    icon: "🏛️",
+  },
+  {
+    title: "Prevention",
+    message:
+      "Act early to avoid harm or failure. Prevention is the best form of protection.",
+    icon: "🛑",
+  },
+  {
+    title: "Empowerment",
+    message:
+      "When people are trusted and encouraged, they grow beyond limits. Empowerment fuels innovation and joy.",
+    icon: "⚡",
   },
 ];
 
 // Sound effects using Web Audio API
 const createSound = (frequency, duration, type = "sine") => {
   try {
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const audioContext = new (window.AudioContext ||
+      window.webkitAudioContext)();
     const oscillator = audioContext.createOscillator();
     const gainNode = audioContext.createGain();
 
@@ -253,9 +454,7 @@ const Scoreboard = ({ wins, losses }) => {
       >
         <Trophy className="text-emerald-300" size={18} />
         <div>
-          <div className="text-emerald-300 text-xs font-medium">
-            Wins
-          </div>
+          <div className="text-emerald-300 text-xs font-medium">Wins</div>
           <motion.div
             key={wins}
             initial={{ scale: 1.5, color: "#6ee7b7" }}
@@ -273,9 +472,7 @@ const Scoreboard = ({ wins, losses }) => {
       >
         <Target className="text-red-300" size={18} />
         <div>
-          <div className="text-red-300 text-xs font-medium">
-            Losses
-          </div>
+          <div className="text-red-300 text-xs font-medium">Losses</div>
           <motion.div
             key={losses}
             initial={{ scale: 1.5, color: "#fca5a5" }}
@@ -462,12 +659,14 @@ export default function App() {
   const [volume, setVolume] = useState(0.5);
   const [isMuted, setIsMuted] = useState(false);
   const [playerStartsNext, setPlayerStartsNext] = useState(true);
+  const [consecutiveWins, setConsecutiveWins] = useState(0);
+  const [consecutiveLosses, setConsecutiveLosses] = useState(0);
 
   // Ethical values state
   const [unlockedValue, setUnlockedValue] = useState(null);
   const [showValueNotification, setShowValueNotification] = useState(false);
   const [showValueModal, setShowValueModal] = useState(false);
-  const lastValueIndexRef = useRef(-1);
+  const lastValueIndexRef = useRef(Math.floor(Math.random() * ETHICAL_VALUES.length));
 
   // Get random value (ensuring no consecutive repeats)
   const getRandomValue = () => {
@@ -509,50 +708,60 @@ export default function App() {
     return null;
   }, []);
 
-  // AI Logic - Easy mode with 70% smart, 30% random
-  const getAIMove = useCallback((currentBoard) => {
-    const emptyCells = currentBoard
-      .map((val, idx) => (val === null ? idx : null))
-      .filter((val) => val !== null);
+  // AI Logic - Dynamic difficulty based on consecutive wins/losses
+  const getAIMove = useCallback(
+    (currentBoard) => {
+      const emptyCells = currentBoard
+        .map((val, idx) => (val === null ? idx : null))
+        .filter((val) => val !== null);
 
-    if (emptyCells.length === 0) return null;
+      if (emptyCells.length === 0) return null;
 
-    // 30% chance of random move (making AI easier to beat)
-    if (Math.random() < 0.3) {
+      // Dynamic difficulty adjustment
+      let randomChance = 0.3; // Default 30% random
+      if (consecutiveWins >= 3) {
+        randomChance = 0.1; // 10% random (90% smart) when player wins 3+ in a row
+      } else if (consecutiveLosses >= 3) {
+        randomChance = 0.6; // 60% random (40% smart) when player loses 3+ in a row
+      }
+
+      if (Math.random() < randomChance) {
+        return emptyCells[Math.floor(Math.random() * emptyCells.length)];
+      }
+
+      // Smart move logic
+      // Try to win
+      for (let cell of emptyCells) {
+        const testBoard = [...currentBoard];
+        testBoard[cell] = "O";
+        if (checkWinner(testBoard)?.winner === "O") {
+          return cell;
+        }
+      }
+
+      // Try to block player
+      for (let cell of emptyCells) {
+        const testBoard = [...currentBoard];
+        testBoard[cell] = "X";
+        if (checkWinner(testBoard)?.winner === "X") {
+          return cell;
+        }
+      }
+
+      // Take center if available
+      if (currentBoard[4] === null) return 4;
+
+      // Take a random corner
+      const corners = [0, 2, 6, 8].filter((i) => currentBoard[i] === null);
+      if (corners.length > 0) {
+        return corners[Math.floor(Math.random() * corners.length)];
+      }
+
+      // Take any available cell
       return emptyCells[Math.floor(Math.random() * emptyCells.length)];
-    }
-
-    // 70% chance of smart move
-    // Try to win
-    for (let cell of emptyCells) {
-      const testBoard = [...currentBoard];
-      testBoard[cell] = "O";
-      if (checkWinner(testBoard)?.winner === "O") {
-        return cell;
-      }
-    }
-
-    // Try to block player
-    for (let cell of emptyCells) {
-      const testBoard = [...currentBoard];
-      testBoard[cell] = "X";
-      if (checkWinner(testBoard)?.winner === "X") {
-        return cell;
-      }
-    }
-
-    // Take center if available
-    if (currentBoard[4] === null) return 4;
-
-    // Take a random corner
-    const corners = [0, 2, 6, 8].filter((i) => currentBoard[i] === null);
-    if (corners.length > 0) {
-      return corners[Math.floor(Math.random() * corners.length)];
-    }
-
-    // Take any available cell
-    return emptyCells[Math.floor(Math.random() * emptyCells.length)];
-  }, [checkWinner]);
+    },
+    [checkWinner, consecutiveWins, consecutiveLosses]
+  );
 
   // Handle player move
   const handleSquareClick = (index) => {
@@ -568,6 +777,8 @@ export default function App() {
       setWinningLine(result.line);
       setGameOver(true);
       setWins(wins + 1);
+      setConsecutiveWins(consecutiveWins + 1);
+      setConsecutiveLosses(0);
       setShowConfetti(true);
       playWinSound(isMuted ? 0 : volume);
 
@@ -585,6 +796,7 @@ export default function App() {
 
     if (newBoard.every((cell) => cell !== null)) {
       setGameOver(true);
+      // Draw doesn't reset consecutive counters
       return;
     }
 
@@ -607,12 +819,15 @@ export default function App() {
             setWinningLine(result.line);
             setGameOver(true);
             setLosses(losses + 1);
+            setConsecutiveLosses(consecutiveLosses + 1);
+            setConsecutiveWins(0);
             playLoseSound(isMuted ? 0 : volume);
             return;
           }
 
           if (newBoard.every((cell) => cell !== null)) {
             setGameOver(true);
+            // Draw doesn't reset consecutive counters
             return;
           }
 
@@ -622,9 +837,18 @@ export default function App() {
 
       return () => clearTimeout(timer);
     }
-  }, [isPlayerTurn, gameOver, board, volume, isMuted, losses, getAIMove, checkWinner]);
-
-
+  }, [
+    isPlayerTurn,
+    gameOver,
+    board,
+    volume,
+    isMuted,
+    losses,
+    getAIMove,
+    checkWinner,
+    consecutiveLosses,
+    consecutiveWins,
+  ]);
 
   // Reset game
   const resetGame = useCallback(() => {
@@ -681,17 +905,6 @@ export default function App() {
       />
 
       {showConfetti && <Confetti />}
-
-      {/* TATA ETHICS GAMES Header */}
-      <motion.div
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        className="relative z-10 text-center pt-4 pb-2"
-      >
-        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white" style={{ fontFamily: "'Poppins', sans-serif" }}>
-          TATA ETHICS GAMES
-        </h1>
-      </motion.div>
 
       <div className="relative z-10 flex flex-col items-center justify-center flex-1 px-4 pb-4">
         {/* Game Title */}
