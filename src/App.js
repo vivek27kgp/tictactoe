@@ -305,7 +305,7 @@ export default function App() {
   }, []);
 
   // Get next value from shuffled array
-  const getNextValue = () => {
+  const getNextValue = useCallback(() => {
     if (valueIndex >= shuffledValues.length) {
       // Reshuffle when all values are used
       const newShuffled = [...TATA_VALUES].sort(() => Math.random() - 0.5);
@@ -316,7 +316,7 @@ export default function App() {
     const value = shuffledValues[valueIndex];
     setValueIndex(prev => prev + 1);
     return value;
-  };
+  }, [valueIndex, shuffledValues]);
 
   // Handle flying value animation
   const handleValueFly = useCallback((squareIndex) => {
