@@ -2,352 +2,17 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Volume2, VolumeX, Trophy, Target, Sparkles, X } from "lucide-react";
 
-// Ethical Values Collection - 20+ unique messages
-const ETHICAL_VALUES = [
-  {
-    title: "Whistleblower",
-    message:
-      "Someone who bravely exposes wrongdoing for the greater good. Courage in truth safeguards integrity in any system.",
-    icon: "📣",
-  },
-  {
-    title: "Ethics",
-    message:
-      "The foundation of right conduct. Ethics guide our decisions and shape our collective trust and humanity.",
-    icon: "⚖️",
-  },
-  {
-    title: "Integrity",
-    message:
-      "Being honest and staying true to your moral principles, even when no one is watching. Integrity earns lifelong respect.",
-    icon: "🛡️",
-  },
-  {
-    title: "Excellence",
-    message:
-      "Strive for the highest standards in everything you do. Excellence is a journey of continuous improvement and purpose.",
-    icon: "🏆",
-  },
-  {
-    title: "Pioneering",
-    message:
-      "Being the first to explore new ideas and lead innovation. True pioneers inspire others to dream and act boldly.",
-    icon: "🚀",
-  },
-  {
-    title: "Unity",
-    message:
-      "Standing together as one. Unity builds strength, fosters understanding, and creates unstoppable teams.",
-    icon: "🤝",
-  },
-  {
-    title: "Responsibility",
-    message:
-      "Owning your actions and their outcomes. Responsibility is the foundation of leadership and trust.",
-    icon: "⚖️",
-  },
-  {
-    title: "Transparency",
-    message:
-      "Communicating openly and honestly. Transparency creates clarity, prevents misunderstandings, and builds credibility.",
-    icon: "🔍",
-  },
-  {
-    title: "Respect",
-    message:
-      "Honoring the value and dignity of others. Respect transforms differences into meaningful collaboration.",
-    icon: "🙏",
-  },
-  {
-    title: "Trust",
-    message:
-      "Believing in the reliability and integrity of others. Trust is earned through consistent actions over time.",
-    icon: "🤝",
-  },
-  {
-    title: "Accountability",
-    message:
-      "Taking ownership of your words, actions, and results. Accountability strengthens credibility and teamwork.",
-    icon: "📘",
-  },
-  {
-    title: "Fairness",
-    message:
-      "Treating everyone equally and justly. Fairness ensures harmony, justice, and lasting relationships.",
-    icon: "⚖️",
-  },
-  {
-    title: "Honesty",
-    message:
-      "Always speak the truth with kindness and courage. Honesty builds the foundation of every meaningful connection.",
-    icon: "💬",
-  },
-  {
-    title: "Diversity",
-    message:
-      "Celebrating differences and learning from every perspective. Diversity makes teams stronger and ideas richer.",
-    icon: "🌎",
-  },
-  {
-    title: "Equality",
-    message:
-      "Everyone deserves equal opportunity and respect. Equality empowers people to reach their full potential.",
-    icon: "🤲",
-  },
-  {
-    title: "Meritocracy",
-    message:
-      "Rewarding effort and talent fairly. Meritocracy ensures that success comes from hard work and ability, not privilege.",
-    icon: "🎯",
-  },
-  {
-    title: "Innovation",
-    message:
-      "Turning imagination into reality. Innovation drives progress and transforms challenges into opportunities.",
-    icon: "💡",
-  },
-  {
-    title: "Sustainability",
-    message:
-      "Building a better world without harming tomorrow. Sustainability means mindful growth and conscious action.",
-    icon: "🌱",
-  },
-  {
-    title: "Confidentiality",
-    message:
-      "Protecting private information with discretion. Trust thrives when confidentiality is respected.",
-    icon: "🔒",
-  },
-  {
-    title: "Leadership",
-    message:
-      "Guiding with vision, empathy, and example. True leadership uplifts others and cultivates growth.",
-    icon: "🌟",
-  },
-  {
-    title: "Commitment",
-    message:
-      "Dedication to goals and values even when challenges arise. Commitment is the seed of accomplishment.",
-    icon: "💪",
-  },
-  {
-    title: "Courage",
-    message:
-      "Facing fear with determination. Courage is the bridge between intention and achievement.",
-    icon: "🦁",
-  },
-  {
-    title: "Empathy",
-    message:
-      "Feeling and understanding the emotions of others. Empathy fosters compassion and strong human connections.",
-    icon: "❤️",
-  },
-  {
-    title: "Collaboration",
-    message:
-      "Working together with shared purpose. Collaboration multiplies creativity and success.",
-    icon: "🤝",
-  },
-  {
-    title: "Professionalism",
-    message:
-      "Maintaining competence, respect, and accountability. Professionalism builds confidence and trust in your work.",
-    icon: "💼",
-  },
-  {
-    title: "Tolerance",
-    message:
-      "Embracing differences with patience and respect. Tolerance nurtures peace and cooperation.",
-    icon: "🕊️",
-  },
-  {
-    title: "Learning",
-    message:
-      "A lifelong journey of curiosity and discovery. Each lesson shapes a wiser version of yourself.",
-    icon: "📚",
-  },
-  {
-    title: "Empowerment",
-    message:
-      "Giving people the confidence and authority to act. Empowerment transforms potential into performance.",
-    icon: "⚡",
-  },
-  {
-    title: "Communication",
-    message:
-      "Sharing information clearly and respectfully. Effective communication builds understanding and trust.",
-    icon: "🗣️",
-  },
-  {
-    title: "Protection",
-    message:
-      "Safeguarding people, values, and truth. Protection ensures safety, dignity, and justice for all.",
-    icon: "🛡️",
-  },
-  {
-    title: "Objectivity",
-    message:
-      "Judging situations with facts, not emotions. Objectivity helps maintain fairness and sound decision-making.",
-    icon: "🎯",
-  },
-  {
-    title: "Authenticity",
-    message:
-      "Being genuine and true to yourself. Authenticity inspires confidence and connection.",
-    icon: "✨",
-  },
-  {
-    title: "Inclusivity",
-    message:
-      "Creating space for everyone to belong. Inclusivity celebrates differences and strengthens unity.",
-    icon: "🌍",
-  },
-  {
-    title: "Credibility",
-    message:
-      "Earning trust through consistency and reliability. Credibility turns promises into proven results.",
-    icon: "📜",
-  },
-  {
-    title: "Discipline",
-    message:
-      "Training yourself to stay focused and consistent. Discipline is the key to turning goals into achievements.",
-    icon: "🎯",
-  },
-  {
-    title: "Dedication",
-    message:
-      "Staying fully committed to your purpose. Dedication transforms hard work into lasting success.",
-    icon: "🔥",
-  },
-  {
-    title: "Motivation",
-    message:
-      "The inner drive that pushes you toward greatness. Motivation fuels progress and persistence.",
-    icon: "🚀",
-  },
-  {
-    title: "Clarity",
-    message:
-      "Understanding what truly matters. Clarity helps you make better decisions and stay on your path.",
-    icon: "🔦",
-  },
-  {
-    title: "Support",
-    message:
-      "Helping others grow and succeed. True support strengthens teams and builds lasting bonds.",
-    icon: "🫶",
-  },
-  {
-    title: "Recognition",
-    message:
-      "Acknowledging effort and contribution. Recognition motivates excellence and inspires gratitude.",
-    icon: "🏅",
-  },
-  {
-    title: "Resilience",
-    message:
-      "The strength to recover from challenges stronger than before. Resilience turns obstacles into growth.",
-    icon: "🌱",
-  },
-  {
-    title: "Optimism",
-    message:
-      "Believing in positive outcomes even in adversity. Optimism fuels hope and innovation.",
-    icon: "☀️",
-  },
-  {
-    title: "Growth",
-    message:
-      "Continuously improving and evolving. Growth happens when you step outside your comfort zone.",
-    icon: "🌳",
-  },
-  {
-    title: "Vision",
-    message:
-      "Seeing beyond the present to shape the future. Visionaries turn ideas into reality through belief and action.",
-    icon: "🔭",
-  },
-  {
-    title: "Strategy",
-    message:
-      "Crafting a thoughtful plan to reach your goals. A clear strategy turns dreams into achievable milestones.",
-    icon: "🗺️",
-  },
-  {
-    title: "Synergy",
-    message:
-      "The power of combined effort. Synergy makes collaboration more effective than individual action.",
-    icon: "⚙️",
-  },
-  {
-    title: "Inspiration",
-    message:
-      "The spark that ignites creativity and courage. Inspiration pushes boundaries and elevates others.",
-    icon: "💫",
-  },
-  {
-    title: "Honour",
-    message:
-      "Living with dignity, respect, and truth. Honour defines how others remember your character.",
-    icon: "🎖️",
-  },
-
-  // --- Additional curated values ---
-  {
-    title: "Kindness",
-    message:
-      "A small act of kindness can make a big difference. Compassion is contagious — spread it widely.",
-    icon: "💖",
-  },
-  {
-    title: "Mindfulness",
-    message:
-      "Be fully present in the moment. Mindfulness brings calmness, clarity, and better choices.",
-    icon: "🧘",
-  },
-  {
-    title: "Curiosity",
-    message:
-      "Keep asking questions and exploring. Curiosity is the beginning of all wisdom and discovery.",
-    icon: "🔍",
-  },
-  {
-    title: "Accountable",
-    message:
-      "Owning your results and learning from them. Accountability builds respect and growth.",
-    icon: "📗",
-  },
-  {
-    title: "Safety",
-    message:
-      "Protect yourself and others by acting responsibly. Safety ensures wellbeing and trust for all.",
-    icon: "🦺",
-  },
-  {
-    title: "Culture",
-    message:
-      "A reflection of shared beliefs and practices. A strong culture fosters belonging and pride.",
-    icon: "🎭",
-  },
-  {
-    title: "Governance",
-    message:
-      "Leading with fairness, clarity, and accountability. Good governance ensures lasting progress.",
-    icon: "🏛️",
-  },
-  {
-    title: "Prevention",
-    message:
-      "Act early to avoid harm or failure. Prevention is the best form of protection.",
-    icon: "🛑",
-  },
-  {
-    title: "Empowerment",
-    message:
-      "When people are trusted and encouraged, they grow beyond limits. Empowerment fuels innovation and joy.",
-    icon: "⚡",
-  },
+// Tata Values - 9 core values
+const TATA_VALUES = [
+  "INTEGRITY",
+  "PIONEERING", 
+  "EXCELLENCE",
+  "UNITY",
+  "RESPONSIBILITY",
+  "CUSTOMER FOCUS",
+  "RESPECT & INCLUSION",
+  "DIVERSITY",
+  "TRANSPARENCY"
 ];
 
 // Sound effects using Web Audio API
@@ -398,17 +63,55 @@ const playLoseSound = (volume) => {
   }
 };
 
+// Flying Value Animation Component
+const FlyingValue = ({ value, onComplete }) => {
+  return (
+    <motion.div
+      initial={{ 
+        y: 0, 
+        opacity: 1, 
+        scale: 0.5 
+      }}
+      animate={{ 
+        y: -150, 
+        opacity: 0, 
+        scale: 1.2 
+      }}
+      transition={{ 
+        duration: 2.5, 
+        ease: "easeOut" 
+      }}
+      onAnimationComplete={onComplete}
+      className="absolute pointer-events-none z-50 font-bold text-sm text-white bg-gradient-to-r from-cyan-400 to-emerald-400 px-3 py-1 rounded-full shadow-lg border border-white/40 whitespace-nowrap"
+      style={{
+        left: '50%',
+        top: '50%',
+        transform: 'translate(-50%, -50%)'
+      }}
+    >
+      {value}
+    </motion.div>
+  );
+};
+
 // Square Component - Individual cell in the board
-const Square = ({ value, onClick, isWinning, disabled }) => {
+const Square = ({ value, onClick, isWinning, disabled, index, onValueFly, flyingValue }) => {
+  const handleClick = () => {
+    if (!disabled && !value) {
+      onValueFly(index);
+    }
+    onClick();
+  };
+
   return (
     <motion.button
       whileHover={!disabled && !value ? { scale: 1.05, rotate: 2 } : {}}
       whileTap={!disabled && !value ? { scale: 0.95 } : {}}
-      onClick={onClick}
+      onClick={handleClick}
       disabled={disabled || value}
       className={`
         aspect-square rounded-xl md:rounded-2xl font-bold text-4xl md:text-5xl
-        transition-all duration-300 relative overflow-hidden
+        transition-all duration-300 relative overflow-visible
         ${value ? "cursor-default" : "cursor-pointer"}
         ${
           isWinning
@@ -434,6 +137,16 @@ const Square = ({ value, onClick, isWinning, disabled }) => {
           >
             {value}
           </motion.span>
+        )}
+      </AnimatePresence>
+      
+      {/* Flying Value for this square */}
+      <AnimatePresence>
+        {flyingValue && (
+          <FlyingValue
+            value={flyingValue.value}
+            onComplete={flyingValue.onComplete}
+          />
         )}
       </AnimatePresence>
     </motion.button>
@@ -488,7 +201,7 @@ const Scoreboard = ({ wins, losses }) => {
 };
 
 // GameBoard Component
-const GameBoard = ({ board, onSquareClick, winningLine, disabled }) => {
+const GameBoard = ({ board, onSquareClick, winningLine, disabled, onValueFly, flyingValues, removeFlyingValue }) => {
   return (
     <motion.div
       initial={{ scale: 0.8, opacity: 0 }}
@@ -496,15 +209,24 @@ const GameBoard = ({ board, onSquareClick, winningLine, disabled }) => {
       transition={{ delay: 0.2 }}
       className="grid grid-cols-3 gap-2 w-full max-w-xs md:max-w-sm mb-3 md:mb-4"
     >
-      {board.map((value, index) => (
-        <Square
-          key={index}
-          value={value}
-          onClick={() => onSquareClick(index)}
-          isWinning={winningLine?.includes(index)}
-          disabled={disabled}
-        />
-      ))}
+      {board.map((value, index) => {
+        const flyingValue = flyingValues.find(fv => fv.squareIndex === index);
+        return (
+          <Square
+            key={index}
+            value={value}
+            onClick={() => onSquareClick(index)}
+            isWinning={winningLine?.includes(index)}
+            disabled={disabled}
+            index={index}
+            onValueFly={onValueFly}
+            flyingValue={flyingValue ? {
+              value: flyingValue.value,
+              onComplete: () => removeFlyingValue(flyingValue.id)
+            } : null}
+          />
+        );
+      })}
     </motion.div>
   );
 };
@@ -553,99 +275,7 @@ const Confetti = () => {
   );
 };
 
-// Ethical Value Unlock Notification
-const ValueUnlockNotification = ({ value, onClose, onViewDetails }) => {
-  return (
-    <motion.div
-      initial={{ y: 100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      exit={{ y: 100, opacity: 0 }}
-      className="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:w-96 z-50"
-    >
-      <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl p-4 shadow-2xl border-2 border-white/20 backdrop-blur-md">
-        <div className="flex items-start justify-between mb-2">
-          <div className="flex items-center gap-2">
-            <Sparkles className="text-yellow-300 animate-pulse" size={24} />
-            <h3 className="text-white font-bold text-lg">Value Unlocked!</h3>
-          </div>
-          <button
-            onClick={onClose}
-            className="text-white/70 hover:text-white transition-colors"
-          >
-            <X size={20} />
-          </button>
-        </div>
-        <div className="flex items-center gap-3 mb-3">
-          <span className="text-4xl">{value.icon}</span>
-          <div>
-            <p className="text-white font-semibold text-xl">{value.title}</p>
-            <p className="text-white/80 text-sm">Tap to read the message</p>
-          </div>
-        </div>
-        <button
-          onClick={onViewDetails}
-          className="w-full bg-white/20 hover:bg-white/30 text-white font-semibold py-2 rounded-lg transition-colors backdrop-blur-sm"
-        >
-          View Message
-        </button>
-      </div>
-    </motion.div>
-  );
-};
 
-// Ethical Value Detail Modal
-const ValueDetailModal = ({ value, onClose }) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50"
-      onClick={onClose}
-    >
-      <motion.div
-        initial={{ scale: 0.8, opacity: 0, y: 50 }}
-        animate={{ scale: 1, opacity: 1, y: 0 }}
-        exit={{ scale: 0.8, opacity: 0, y: 50 }}
-        onClick={(e) => e.stopPropagation()}
-        className="bg-gradient-to-br from-purple-600 via-pink-600 to-purple-700 rounded-3xl p-6 md:p-8 max-w-md w-full shadow-2xl border-2 border-white/20"
-      >
-        <div className="text-center mb-4">
-          <motion.div
-            animate={{ rotate: [0, 10, -10, 0] }}
-            transition={{ duration: 0.5, repeat: 3 }}
-            className="text-7xl md:text-8xl mb-4"
-          >
-            {value.icon}
-          </motion.div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
-            {value.title}
-          </h2>
-          <div className="w-20 h-1 bg-white/50 mx-auto rounded-full mb-4"></div>
-        </div>
-
-        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 mb-6 border border-white/20">
-          <p className="text-white text-base md:text-lg leading-relaxed text-center">
-            {value.message}
-          </p>
-        </div>
-
-        <button
-          onClick={() => {
-            onClose();
-            // Reset the auto-restart timer after closing modal
-            setTimeout(() => {
-              // This will trigger the useEffect to start the 3-second timer
-            }, 100);
-          }}
-          className="w-full bg-white text-purple-600 hover:bg-white/90 font-bold py-3 md:py-4 rounded-xl transition-colors text-base md:text-lg"
-        >
-          Continue Playing
-        </button>
-      </motion.div>
-    </motion.div>
-  );
-};
 
 // Main App Component
 export default function App() {
@@ -662,24 +292,42 @@ export default function App() {
   const [consecutiveWins, setConsecutiveWins] = useState(0);
   const [consecutiveLosses, setConsecutiveLosses] = useState(0);
 
-  // Ethical values state
-  const [unlockedValue, setUnlockedValue] = useState(null);
-  const [showValueNotification, setShowValueNotification] = useState(false);
-  const [showValueModal, setShowValueModal] = useState(false);
-  const lastValueIndexRef = useRef(Math.floor(Math.random() * ETHICAL_VALUES.length));
+  // Flying values state
+  const [flyingValues, setFlyingValues] = useState([]);
+  const [shuffledValues, setShuffledValues] = useState([]);
+  const [valueIndex, setValueIndex] = useState(0);
 
-  // Get random value (ensuring no consecutive repeats)
-  const getRandomValue = () => {
-    let randomIndex;
-    do {
-      randomIndex = Math.floor(Math.random() * ETHICAL_VALUES.length);
-    } while (
-      randomIndex === lastValueIndexRef.current &&
-      ETHICAL_VALUES.length > 1
-    );
+  // Initialize shuffled values on game start
+  useEffect(() => {
+    const shuffled = [...TATA_VALUES].sort(() => Math.random() - 0.5);
+    setShuffledValues(shuffled);
+    setValueIndex(0);
+  }, []);
 
-    lastValueIndexRef.current = randomIndex;
-    return ETHICAL_VALUES[randomIndex];
+  // Get next value from shuffled array
+  const getNextValue = () => {
+    if (valueIndex >= shuffledValues.length) {
+      // Reshuffle when all values are used
+      const newShuffled = [...TATA_VALUES].sort(() => Math.random() - 0.5);
+      setShuffledValues(newShuffled);
+      setValueIndex(1);
+      return newShuffled[0];
+    }
+    const value = shuffledValues[valueIndex];
+    setValueIndex(prev => prev + 1);
+    return value;
+  };
+
+  // Handle flying value animation
+  const handleValueFly = (squareIndex) => {
+    const value = getNextValue();
+    const id = Date.now() + Math.random();
+    setFlyingValues(prev => [...prev, { id, value, squareIndex }]);
+  };
+
+  // Remove completed flying value
+  const removeFlyingValue = (id) => {
+    setFlyingValues(prev => prev.filter(fv => fv.id !== id));
   };
 
   // Check for winner
@@ -781,15 +429,6 @@ export default function App() {
       setConsecutiveLosses(0);
       setShowConfetti(true);
       playWinSound(isMuted ? 0 : volume);
-
-      // Unlock a random ethical value
-      const randomValue = getRandomValue();
-      setUnlockedValue(randomValue);
-
-      setTimeout(() => {
-        setShowValueNotification(true);
-      }, 1500);
-
       setTimeout(() => setShowConfetti(false), 3000);
       return;
     }
@@ -814,6 +453,11 @@ export default function App() {
           setBoard(newBoard);
           playMoveSound(isMuted ? 0 : volume);
 
+          // Trigger flying value for AI move
+          setTimeout(() => {
+            handleValueFly(aiMove);
+          }, 500);
+
           const result = checkWinner(newBoard);
           if (result) {
             setWinningLine(result.line);
@@ -833,7 +477,7 @@ export default function App() {
 
           setIsPlayerTurn(true);
         }
-      }, 600);
+      }, 1100);
 
       return () => clearTimeout(timer);
     }
@@ -848,6 +492,7 @@ export default function App() {
     checkWinner,
     consecutiveLosses,
     consecutiveWins,
+    handleValueFly,
   ]);
 
   // Reset game
@@ -857,18 +502,22 @@ export default function App() {
     setGameOver(false);
     setWinningLine(null);
     setPlayerStartsNext(!playerStartsNext); // Alternate who starts next game
+    // Reset values for new game
+    const shuffled = [...TATA_VALUES].sort(() => Math.random() - 0.5);
+    setShuffledValues(shuffled);
+    setValueIndex(0);
   }, [playerStartsNext]);
 
-  // Auto-restart game after win/loss/draw (pause when modal is open)
+  // Auto-restart game after win/loss/draw
   useEffect(() => {
-    if (gameOver && !showValueNotification && !showValueModal) {
+    if (gameOver) {
       const timer = setTimeout(() => {
         resetGame();
       }, 3000); // Wait 3 seconds before auto-restart
 
       return () => clearTimeout(timer);
     }
-  }, [gameOver, resetGame, showValueNotification, showValueModal]);
+  }, [gameOver, resetGame]);
 
   // AI makes first move if it starts
   useEffect(() => {
@@ -880,13 +529,19 @@ export default function App() {
           newBoard[aiMove] = "O";
           setBoard(newBoard);
           playMoveSound(isMuted ? 0 : volume);
+          
+          // Trigger flying value for AI's first move
+          setTimeout(() => {
+            handleValueFly(aiMove);
+          }, 500);
+          
           setIsPlayerTurn(true);
         }
-      }, 600);
+      }, 1100);
 
       return () => clearTimeout(timer);
     }
-  }, [isPlayerTurn, board, gameOver, volume, isMuted, getAIMove]);
+  }, [isPlayerTurn, board, gameOver, volume, isMuted, getAIMove, handleValueFly]);
 
   return (
     <div className="h-screen w-full bg-gradient-to-br from-cyan-900 via-teal-800 to-emerald-900 flex flex-col relative overflow-hidden">
@@ -926,6 +581,9 @@ export default function App() {
           onSquareClick={handleSquareClick}
           winningLine={winningLine}
           disabled={!isPlayerTurn || gameOver}
+          onValueFly={handleValueFly}
+          flyingValues={flyingValues}
+          removeFlyingValue={removeFlyingValue}
         />
 
         {/* Game Status */}
@@ -988,29 +646,7 @@ export default function App() {
         </div>
       </div>
 
-      {/* Ethical Value Notification */}
-      <AnimatePresence>
-        {showValueNotification && unlockedValue && !showValueModal && (
-          <ValueUnlockNotification
-            value={unlockedValue}
-            onClose={() => setShowValueNotification(false)}
-            onViewDetails={() => {
-              setShowValueNotification(false);
-              setShowValueModal(true);
-            }}
-          />
-        )}
-      </AnimatePresence>
 
-      {/* Ethical Value Detail Modal */}
-      <AnimatePresence>
-        {showValueModal && unlockedValue && (
-          <ValueDetailModal
-            value={unlockedValue}
-            onClose={() => setShowValueModal(false)}
-          />
-        )}
-      </AnimatePresence>
     </div>
   );
 }
