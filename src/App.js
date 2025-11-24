@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Volume2, VolumeX, Trophy, Target, Sparkles, X } from "lucide-react";
+import { Volume2, VolumeX, Trophy, Target } from "lucide-react";
 
 // Tata Values - 9 core values
 const TATA_VALUES = [
@@ -319,11 +319,11 @@ export default function App() {
   };
 
   // Handle flying value animation
-  const handleValueFly = (squareIndex) => {
+  const handleValueFly = useCallback((squareIndex) => {
     const value = getNextValue();
     const id = Date.now() + Math.random();
     setFlyingValues(prev => [...prev, { id, value, squareIndex }]);
-  };
+  }, [getNextValue]);
 
   // Remove completed flying value
   const removeFlyingValue = (id) => {
@@ -566,11 +566,21 @@ export default function App() {
         <motion.h2
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6 text-center"
+          className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 text-center"
           style={{ fontFamily: "'Poppins', sans-serif" }}
         >
           Tic Tac Toe
         </motion.h2>
+        
+        {/* Tagline */}
+        <motion.p
+          initial={{ y: -10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="text-cyan-200 text-sm md:text-base mb-4 md:mb-6 text-center"
+        >
+          Tap a Square to Unlock More Values
+        </motion.p>
 
         {/* Scoreboard */}
         <Scoreboard wins={wins} losses={losses} />
@@ -617,7 +627,7 @@ export default function App() {
         )}
 
         {/* Controls */}
-        <div className="flex flex-wrap gap-2 md:gap-3 items-center justify-center">
+        <div className="fixed top-4 right-4 flex gap-2 items-center">
           {/* Volume Control */}
           <motion.button
             whileHover={{ scale: 1.05 }}
